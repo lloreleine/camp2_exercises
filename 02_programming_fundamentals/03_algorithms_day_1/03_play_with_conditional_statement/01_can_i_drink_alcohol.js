@@ -1,11 +1,11 @@
 // > Frieda and Francis walk on the street. Frieda is 22 and Francis is 17.
-// Create two objects, `francis`, `frieda` with the fields :
-//   `age` (an integer) and `name`, (obviously a string)
-const objFrancis = {
+//
+// Create two objects, `francis`, `frieda` with the fields : `age` (an integer) and `name`, (obviously a string)
+const Francis = {
   age:17,
   name: "Francis"
 };
-const objFrieda = {
+const Frieda = {
   age: 22,
   name: "Frieda"
 };
@@ -24,14 +24,21 @@ let canFrancisDrinkAlcohol;
 // "Frieda|Francis should be inside an object frieda|francis".
 // All the other tests should work.
 
-if (objFrancis.age>=18){
+if (Francis.age>=18){
   canFrancisDrinkAlcohol = true;
 } else {
   canFrancisDrinkAlcohol = false;
 }
 
-if (objFrieda.age>=18){
+if (Frieda.age>=18){
   canFriedaDrinkAlcohol = true;
 } else {
   canFriedaDrinkAlcohol = false;
 }
+
+/* Ecritures alternatives :
+const canFriedaDrinkAlcohol = Frieda.age>=18;
+et pas de if !
+On affecte dès le début à la variable une "formule"
+donnant comme résultat un booléen.
+*/
