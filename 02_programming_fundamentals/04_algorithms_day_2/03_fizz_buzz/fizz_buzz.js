@@ -9,8 +9,25 @@
 */
 
 function fizzBuzz(list) {
-
+  const newList = [];
+  for(let i=0; i<list.length; i++){
+    if(list[i] % 3 === 0 && list[i] % 5 === 0){
+      newList[i]= "FizzBuzz";
+    }
+    else if(list[i] % 3 === 0){
+      newList[i]  = "Fizz";
+    }
+    else if(list[i] % 5 === 0) {
+      newList[i]  = "Buzz";
+    }
+    else {
+      newList[i] = list[i];
+    }
+  }
+  return newList;
 }
+
+const list =[1, 2, 3, 4, 5, 6];
 
 
 module.exports = fizzBuzz;

@@ -4,9 +4,23 @@
 // This function should work in both ascending or descending order.
 
 // Complete this function.
-function range() {
 
+function range(startNumber, endNumber) {
+  const tableau = [];
+  if(startNumber<endNumber){
+    for (let i = startNumber; i <= endNumber; i++){
+      tableau.push(i);
+    }
+  } else {
+    for (let i = startNumber; i >= endNumber; i--){
+      tableau.push(i);
+    }
+  }
+  return tableau;
 }
+
+console.log(range(1, 5));
+console.log(range(5, 1));
 
 // Do not remove last lines, it is for tests
 // eslint-disable-next-line
