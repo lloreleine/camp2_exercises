@@ -28,6 +28,7 @@ function fizzBuzz(list) {
 }
 
 const list =[1, 2, 3, 4, 5, 6];
+console.log(fizzBuzz(list));
 
 
 module.exports = fizzBuzz;
