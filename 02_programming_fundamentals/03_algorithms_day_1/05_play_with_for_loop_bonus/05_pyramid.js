@@ -38,3 +38,21 @@ for (let j=1; j<6; j++){
     console.log(stars.join(""));
   }
 }
+
+/* Code de Dom :
+const etoile = [" ", " ", " ", "*"];
+let ligne = "";
+
+
+ligne = etoile.join("");
+console.log(ligne);
+
+for (let i = 1; i < 4 ; i ++){
+
+ etoile[3-i] = "*";
+  etoile[3+i] = "*";
+  ligne = etoile.join("");
+  console.log(ligne);
+
+}
+*/

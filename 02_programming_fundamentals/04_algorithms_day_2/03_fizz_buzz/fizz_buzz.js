@@ -27,6 +27,26 @@ function fizzBuzz(list) {
   return newList;
 }
 
+/* Ecriture alternative (réduisant le code) :
+return const newList = [];
+pas de déclaration préalable de la variable array "newList"
+directement dans le return */
+
+/* Code alternatif du if / else
+if(list[i] % 3 === 0 && list[i] % 5 === 0){
+  newList.push("FizzBuzz");
+}
+else if(list[i] % 3 === 0){
+  newList.push("Fizz");
+}
+else if(list[i] % 5 === 0) {
+  newList.push("Buzz");
+}
+else {
+  newList.push(list[i]);
+}
+*/
+
 const list =[1, 2, 3, 4, 5, 6];
 console.log(fizzBuzz(list));
 
