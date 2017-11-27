@@ -12,7 +12,7 @@ function filter(array, str) {
   }
   else if(str === "odd"){
     for(let i=0; i<array.length; i++){
-      if(array[i] % 2 !== 0 || array[i] !== 0){
+      if(array[i] % 2 !== 0 && array[i] !== 0){
         newArray.push(array[i]);
       }
     }
