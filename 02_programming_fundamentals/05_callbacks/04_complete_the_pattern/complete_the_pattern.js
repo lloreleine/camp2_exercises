@@ -30,14 +30,14 @@
 // 4444
 
 
-function pattern(size) {
+function pattern(size) { 
   if(size<1){
     return "";
   } else {
     let numReturned = "";
     for (let i=1; i<=size; i++){
       for (let j=1; j<i; j++){
-        numReturned = numReturned+j;
+        numReturned = numReturned+i;
       }
     } return numReturned.trim();
   }

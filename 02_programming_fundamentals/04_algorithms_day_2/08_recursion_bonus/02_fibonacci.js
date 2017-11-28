@@ -15,8 +15,10 @@
 // even several times
 
 function fibo(n) {
-  // your code here
+  return
 }
+
+fibo(3);
 
 // do not remove this line, it is for tests
 module.exports = fibo;
