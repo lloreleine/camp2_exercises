@@ -1,5 +1,7 @@
-// Create a function double which take an integer and return the double of the integer.
-// Then, try to create a function called map. This function should take two parameters:
+// Create a function double which take an integer
+// and return the double of the integer.
+// Then, try to create a function called map.
+// This function should take two parameters:
 //
 // - an array
 // - a function
@@ -11,7 +13,19 @@
 // WARNING: You're not allowed to use `Array.map`!
 
 // Your code here...
+function double(number){
+  return number*2;
+}
 
+function map(array, fn){
+  const myArray = [];
+  for (let i=0; i<array.length; i++){
+    myArray[i] = fn(array[i]);
+  }
+  return myArray;
+}
+
+const doubleArray = map([1, 2, 4, 4], double);
 // Do not remove last lines, it is for tests
 // eslint-disable-next-line
 module.exports = { double: double, map: map };

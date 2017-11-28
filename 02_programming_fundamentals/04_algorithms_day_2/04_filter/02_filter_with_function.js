@@ -7,6 +7,8 @@ function pickEvenNumbers(array){
     if(array[i] % 2 === 0 && array[i] !== 0){
       newArray.push(array[i]);
     }
+    else {
+      newArray=array;
   }
   return newArray;
 }

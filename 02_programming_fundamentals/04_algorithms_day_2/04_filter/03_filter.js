@@ -21,3 +21,6 @@ filter([1, 2, 3, 4, 5], pickEvenNumbers);
 
 // do not remove this line, it is for tests
 module.exports = filter;
+
+const filteredArray = [1, 2, 10, 20, 35, 50].filter(pickEvenNumbers);
+console.log(filteredArray);
