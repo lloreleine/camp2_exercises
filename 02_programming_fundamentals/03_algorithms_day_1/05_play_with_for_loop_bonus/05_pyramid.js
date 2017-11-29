@@ -6,6 +6,26 @@
 //  *****
 // *******
 // ```
+
+for (let j=1; j<5; j++){
+  const stars = [];
+  for (let k=4; k>j; k--){
+    stars.unshift(" ");
+  }
+  for (let i=0; i<j; i++){
+    if(i===0){
+      stars.push("*");
+    }
+    else{
+      stars.push("**");
+    }
+  }
+  console.log(stars.join(""));
+}
+
+/* Ancien code
+(ne fonctionne pas pour une valeur infinie) :
+
 for (let j=1; j<6; j++){
   for (let i=0; i<1; i++){
     const stars = [];

@@ -1,21 +1,19 @@
 // filter takes an array of integer and a function of filtering
 // such as filter([1, 2, 3, 4, 5], pickEvenNumbers) returns [2, 4]
-const newArray=[];
 
-function pickEvenNumbers(array){
-  for(let i=0; i<array.length; i++){
-    if(array[i] % 2 === 0 && array[i] !== 0){
-      newArray.push(array[i]);
-    }
-    else {
-      newArray=array;
-  }
-  return newArray;
+function pickEvenNumbers(number){
+  return (number % 2 === 0 && number !== 0);
 }
 
 function filter(array, fn) {
-  return fn(array);
+  let newArray=[];
+  for(let i=0; i<array.length; i++){
+    if (fn(array[i])){
+      newArray.push(array[i]);
+    }
+  } return newArray;
 }
+
 
 filter([1, 2, 3, 4, 5], pickEvenNumbers);
 

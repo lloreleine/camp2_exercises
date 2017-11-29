@@ -18,11 +18,11 @@ function double(number){
 }
 
 function map(array, fn){
-  const myArray = [];
+  let newArray=[];
   for (let i=0; i<array.length; i++){
-    myArray[i] = fn(array[i]);
+    newArray[i]=fn(array[i]);
   }
-  return myArray;
+  return newArray;
 }
 
 const doubleArray = map([1, 2, 4, 4], double);

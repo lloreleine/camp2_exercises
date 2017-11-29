@@ -10,26 +10,26 @@ where `list` is an array
    YOU MUST USE array.map
 */
 
-function fizzBuzz(element) {
+function fizzBuzz(number){
   let newElement;
-  if (element % 3 === 0 && element % 5 === 0){
-    newElement = "FizzBuzz";
-  } else if (element % 3 === 0){
-    newElement = "Fizz";
-  } else if (element % 5 === 0){
-    newElement = "Buzz";
+  if(number % 3 && number % 5){
+    newElement === "FizzBuzz";
+  } else if (number % 3){
+    newElement === "Fizz";
+  } else if (number % 5){
+    newElement === "Buzz";
   } else {
-    newElement = element;
+    newElement = number;
   }
   return newElement;
 }
 
 function map(array, fn){
-  const myArray = [];
+  let newArray = [];
   for (let i=0; i<array.length; i++){
-    myArray[i] = fn(array[i]);
+    newArray[i]=fn(array[i]);
   }
-  return myArray;
+  return newArray;
 }
 
 const fizzbuzzList = map([1, 2, 3, 4, 5, 6], fizzBuzz);

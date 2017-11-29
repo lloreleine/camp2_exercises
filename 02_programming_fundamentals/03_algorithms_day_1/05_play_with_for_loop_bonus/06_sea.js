@@ -15,16 +15,16 @@
 // ~~~~~~X~~~~~~~~~~~~~~~~~~~~~~~
 // ```
 
-for (let j=0; j<10; j++){
+for (let j=0; j<9; j++){
   let tild = "~";
   let fish = "0";
   let boat = "X";
 
   let sea = [];
   for(let i=0; i<30; i++){
-    if(i===25 && j===2 || i===7 && j===9){
+    if(i===24 && j===1 || i===6 && j===8){
       sea.push(boat);
-    }else if(i===6 && j===4 || i===18 && j===7){
+    }else if(i===5 && j===3 || i===17 && j===6){
       sea.push(fish);
     }else{
       sea.push(tild);
