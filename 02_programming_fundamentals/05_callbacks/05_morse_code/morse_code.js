@@ -1,4 +1,6 @@
-// Your task is to implement a function decodeMorse(morseCode), that would take the morse code as input and return a decoded human-readable string.
+// Your task is to implement a function decodeMorse(morseCode),
+// that would take the morse code as input and return
+// a decoded human-readable string.
 //
 // For example:
 //
@@ -45,8 +47,21 @@ const MORSE_CODE = {
 };
 
 function decodeMorse(morse) {
-  // Your code here
+  let splitWord = morse.split("   ");
+  let sentence = splitWord.map(translateWord).join(" ");
+  // translateWord('.... . -.--') // 'HEY'
+  // translateWord('.--- ..- -.. .') // 'JUDE'
+
+  function translateWord(word){
+    return word.split(" ").map(letter => MORSE_CODE[letter]).join("");
+  }
+  return sentence;
 }
+
+decodeMorse(".... . -.--   .--- ..- -.. .");
+//should return "HEY JUDE"
+
+
 
 // Do not remove last lines, it is for tests
 // eslint-disable-next-line

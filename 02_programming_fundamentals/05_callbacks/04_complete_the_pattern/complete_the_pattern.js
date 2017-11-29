@@ -30,18 +30,35 @@
 // 4444
 
 
-function pattern(size) { 
-  if(size<1){
-    return "";
-  } else {
-    let numReturned = "";
-    for (let i=1; i<=size; i++){
-      for (let j=1; j<i; j++){
-        numReturned = numReturned+i;
-      }
-    } return numReturned.trim();
+// function pattern(size) {
+//   let numReturned = "";
+//   if(size<1){
+//     return "";
+//   }
+//
+//   else {
+//     // boucle de haut en bas
+//     for (let i=1; i<=size; i++){
+//       // boucle de gauche à droite
+//       for (let j=1; j<=i; j++){
+//         numReturned = numReturned+i;
+//       }
+//       numReturned = numReturned+"\n";
+//     }
+//   } return numReturned.trim();
+// }
+
+function pattern(size){
+  let returnedNumber = "";
+  for (let i=1; i<=size ;i++){
+    for (let j=1; j<=i; j++){
+      returnedNumber = returnedNumber+i;
+    }
+    returnedNumber = returnedNumber+"\n";
   }
+  return returnedNumber.trim();
 }
+
 
 pattern(5);
 
