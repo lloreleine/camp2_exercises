@@ -10,17 +10,22 @@
 function sort(unsortedArray) {
   let newArray = unsortedArray.map(sortNumbers);
 
-  function sortNumbers(number){
-    let minNumber;
-    for(let i=0; i<number.length; i++){
-      if(number[i]<=0){
-
+  function sortNumbers(numberOne, numberTwo){
+    let numberOne = unsortedArray[i];
+    let numberTwo = unsortedArray[i+1];
+    let diffNumbers = numberOne - numberTwo;
+    for(let i=0; i<unsortedArray.length; i++){
+      if(diffNumbers<0){
+        numberOne[i]<numberTwo[i];
+        newArray.push(numberOne);
       }
-      newArray.push(minNumber);
+      else if(diffNumbers>0){
+        numberOne[i]>numberTwo[i];
+        newArray.push(numberTwo);
+      }
     }
-  return newArray;
+  }
 }
-
 
 sort([24, 7, 9, 72, -8]);
 
