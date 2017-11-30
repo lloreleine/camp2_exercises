@@ -23,43 +23,22 @@ for (let j=1; j<5; j++){
   console.log(stars.join(""));
 }
 
-/* Ancien code
-(ne fonctionne pas pour une valeur infinie) :
+/* Code d'Ahmid (excluant les lignes paires) :
+let str = "*******";
+let output="";
+let myStr ="";
 
-for (let j=1; j<6; j++){
-  for (let i=0; i<1; i++){
-    const stars = [];
-    if(j===0){
-      stars.unshift("     ");
-    }
-    else if(j===1){
-      stars.unshift("    ");
-    }
-    else if(j===2){
-      stars.unshift("   ");
-    }
-    else if(j===3){
-      stars.unshift("  ");
-    }
-    else if(j===4){
-      stars.unshift(" ");
-    }
-    else{
-      stars.unshift("");
-    }
-    for (let i=0; i<j; i++){
-      if(i===0){
-        stars.push("*");
-      }
-      else{
-        stars.push("**");
-      }
-    }
-    console.log(stars.join(""));
-  }
+for (let i = str.length; i >= 0; i--) {
+  if (i % 2 === 0) {
+    myStr = " ".repeat((i - 1)/2 + 1);
+    output = [str.slice(i, 0 ), myStr, str.slice(i - str.length)].join("");
+    console.log(output);
+
+ }
+
 }
 
-/* Code de Dom :
+   Code de Dom :
 const etoile = [" ", " ", " ", "*"];
 let ligne = "";
 
