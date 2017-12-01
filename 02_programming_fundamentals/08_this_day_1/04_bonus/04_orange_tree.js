@@ -1,11 +1,10 @@
 // See Sparta courses for the exercise summary
-let randomAge = (Math.floor((100-50)*Math.random())+50);
-
 const orangeTree = {
   height: 0,
   age: 0,
   oranges: 0,
   alive: false,
+  minAge: 50,
   seed: function(){
     this.height = 0;
     this.age = 0;
@@ -56,9 +55,13 @@ const orangeTree = {
     return this.oranges;
   },
   isTreeAlive: function(){
+    let randomAge = (Math.floor((100-this.minAge)*Math.random())+this.minAge);
     if (this.age === randomAge){
       this.alive = false;
+    } else if (this.age>=50 && this.age<100){
+      this.minAge = this.minAge +1;
     }
+    console.log("Pourcentage de mort : "+(((randomAge-this.minAge)*100)/this.minAge)+"%");
   }
 }
 
