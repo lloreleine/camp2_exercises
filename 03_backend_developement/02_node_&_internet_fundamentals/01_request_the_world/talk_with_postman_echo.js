@@ -1,27 +1,56 @@
 // A First Query
 
-function callback(result){
-
-}
-
-curl -X GET https://postman-echo.com/get "01_postman_api_call.result"
+const request = require("request");
 
 function simpleGet(callback){
-
-  return ;
+  request(
+    {
+      url: "https://postman-echo.com/get",
+      method: "GET"
+    },
+    function(error, response, result){
+      callback(result);
+    }
+  );
 }
 
 function simpleGetWithParams(callback){
-  return ;
+  request(
+    {
+      url: "https://postman-echo.com/get?foo=bar&program=camp2&people=Frieda&people=Francis",
+      method: "GET"
+    },
+    function(error, response, result){
+      const tradResult = JSON.parse(result);
+      callback(tradResult.args);
+    }
+  );
 }
 
 function validateTimestamp(callback){
-  return ;
+  const date = new Date();
+  const fullYearDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
+  request(
+    {
+      url: `https://postman-echo.com/time/valid?timestamp=${fullYearDate}`,
+      method: "GET"
+    },
+    function(error, response, result){
+      callback(result);
+    }
+  );
 }
 
+function callback(result){
+  console.log(result);
+}
+
+simpleGet(callback);
+simpleGetWithParams(callback);
+validateTimestamp(callback);
 
 module.exports = {
-  simpleGet: simpleGet(),
-  simpleGetWithParams: simpleGetWithParams(),
-  validateTimestamp: validateTimestamp()
-}
+  simpleGet: simpleGet,
+  simpleGetWithParams: simpleGetWithParams,
+  validateTimestamp: validateTimestamp
+};

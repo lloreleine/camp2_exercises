@@ -26,6 +26,7 @@ let currentPlayer;
 
 function handleInput(input) {
   const coordinate = getCoordinate(input);
+  // coordinate = { letter: "a", digit: 0}; si input "a1"
   if (coordinate) {
     updateState(coordinate);
     if (hasWinner()) {
@@ -59,7 +60,7 @@ function getCoordinate(input) {
 
 function updateState(coordinate) {
   const line = state[coordinate.letter];
-  
+  // line = [null, null, null] (de la ligne "a")
   line[coordinate.digit] = currentPlayer;
 }
 
