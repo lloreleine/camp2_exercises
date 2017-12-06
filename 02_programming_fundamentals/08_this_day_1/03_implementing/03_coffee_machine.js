@@ -6,25 +6,25 @@ const machine = {
   litersOfCoffee: 0,
   expresso: function(){
     if(this.litersOfCoffee >= 0.08){
-    this.litersOfCoffee = this.litersOfCoffee - 0.08;
-    return true;
+      this.litersOfCoffee = this.litersOfCoffee - 0.08;
+      return true;
     } else {
-    return false;
+      return false;
     }
   },
   longCoffee: function(){
     if(this.litersOfCoffee >= 0.15){
-    this.litersOfCoffee = this.litersOfCoffee - 0.15;
-    return true;
+      this.litersOfCoffee = this.litersOfCoffee - 0.15;
+      return true;
     } else {
-    return false;
+      return false;
     }
   },
   fillWithLitersOfCoffee: function(liter){
     this.litersOfCoffee = this.litersOfCoffee + liter;
     return this;
   }
-}
+};
 
 
 machine.fillWithLitersOfCoffee(10);

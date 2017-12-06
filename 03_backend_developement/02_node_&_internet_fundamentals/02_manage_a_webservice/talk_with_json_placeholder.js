@@ -104,13 +104,13 @@ function publishPost(userId, title, body, callback){
 function publishComment(postId, name, email, body, callback){
   request(
     {
-      url: `http://jsonplaceholder.typicode.com/comments?postId=${postId}`,
+      url: "http://jsonplaceholder.typicode.com/comments",
       method: "POST",
       form: {
-        name: `${name}`,
-        email: `${email}`,
-        body: `${body}`,
-        postId: `${postId}`
+        name: name,
+        email: email,
+        body: body,
+        postId: postId
       },
     },
     function(error, response, result){
