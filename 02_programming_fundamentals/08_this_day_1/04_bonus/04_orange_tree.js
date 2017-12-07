@@ -33,9 +33,9 @@ const orangeTree = {
   },
   growing: function(){
     if(this.age<10){
-        this.height = this.height + 25;
+      this.height = this.height + 25;
     } else if (this.age>=10 && this.age<20){
-        this.height = this.height + 10;
+      this.height = this.height + 10;
     }
     return this.height;
   },
@@ -63,6 +63,6 @@ const orangeTree = {
     }
     console.log("Pourcentage de mort : "+(((randomAge-this.minAge)*100)/this.minAge)+"%");
   }
-}
+};
 
 module.exports = orangeTree;
