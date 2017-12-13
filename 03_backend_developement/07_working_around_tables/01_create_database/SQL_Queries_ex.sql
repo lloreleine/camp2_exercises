@@ -677,3 +677,9 @@ WHERE salary>12000;
 ------------------------------------------------------
 21 - Write a query in SQL
 to display the department name, full name (first and last name) of manager, and their city.
+
+
+SELECT department.name, employee.first_name || ' ' || employee.last_name AS manager_name, location.city
+FROM department
+INNER JOIN employee ON (employee.id = department.manager_id)
+INNER JOIN location ON (location.id = department.location_id);
