@@ -1,4 +1,3 @@
 node_modules
 *.weather
 *.result
-env_vars.dev
