@@ -16,8 +16,11 @@ function fetchProductById(id){
     .then(result => fetch(`https://decath-product-api.herokuapp.com/brands/${result}`))
     .then(response => response.json())
     .then(function(result){
-      console.log(result.title);
+      // console.log(result.title);
+      return result.title;
     });
 }
 
 fetchProductById("efe288cb-fb63-4b23-b8df-529f04b8b02b");
+
+module.exports = fetchProductById;
