@@ -1,0 +1,29 @@
+h1{
+  font-weight: normal;
+}
+
+h1:hover{
+  font-weight: bold;
+}
+
+input[type=button]{
+  /* offset-x | offset-y | blur-radius | spread-radius | color with opacity*/
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  background-color: #ccccdd;
+  border-radius: 5px;
+  height: 20px;
+  width: 100px;
+}
+input[type=button]:hover{
+  font-weight: bold;
+  cursor:pointer;
+  color:red;
+  height: 25px;
+  width: 110px;
+}
+
+input[type=button]:active {
+  color: #FFFFFF;
+  background-color: red;
+  transform: translateY(3px);
+}

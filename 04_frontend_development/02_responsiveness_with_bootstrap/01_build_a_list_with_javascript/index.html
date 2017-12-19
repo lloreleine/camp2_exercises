@@ -27,6 +27,13 @@
     </div>
     <script src="./departments.js"></script>
     <script>
+      const listDep = document.getElementById("department-list");
+      function listing(){
+        for(let i=0; i<101; i++){
+          listDep.innerHTML = listDep.innerHTML+`<li>${DEPARTMENTS[i]}</li>`;
+        }
+      };
+      listing();
       // Your code here
       // the departments are accessible in a global variable named DEPARTMENTS
     </script>

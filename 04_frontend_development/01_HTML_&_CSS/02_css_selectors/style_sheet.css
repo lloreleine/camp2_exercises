@@ -1,0 +1,28 @@
+th{
+  background-color: #dedede;
+}
+
+th:hover{
+  color: white;
+}
+
+td{
+  padding: 10px;
+  padding-right: 50px;
+}
+
+tr:nth-child(even){
+  background-color: #5698f6;
+}
+
+.important.emphasis {
+  color:red;
+}
+
+.important{
+  font-weight: bold;
+
+}
+.emphasis{
+  font-style: italic;
+}

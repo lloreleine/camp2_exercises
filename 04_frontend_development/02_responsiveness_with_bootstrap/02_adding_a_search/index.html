@@ -34,6 +34,41 @@
     </div>
     <script src="./departments.js"></script>
     <script>
+
+    const myInput = document.querySelector("#search-department");
+    let listDep = document.getElementById("department-list");
+    // each time something is typed into the input
+    // it will call this function and display the value you typed
+
+
+    myInput.addEventListener("input", function() {
+      let inputDep = this.value.toUpperCase();
+      listDep.innerHTML = "";
+      DEPARTMENTS.forEach(function(element){
+        if(element.includes(inputDep)){
+          listDep.innerHTML = listDep.innerHTML+`<li>${element}</li>`;
+
+          console.log(inputDep);
+        } else {
+          console.log("WTF?");
+        }
+      });
+    });
+
+
+
+    // myInput.addEventListener("input", function() {
+    //   let inputDep = this.value.toUpperCase();
+    //   if(DEPARTMENTS.includes(inputDep)){
+    //     let indexDep = DEPARTMENTS.indexOf(inputDep);
+    //     listDep.innerHTML = listDep.innerHTML+`<li>${DEPARTMENTS[indexDep]}</li>`;
+    //
+    //     console.log(inputDep, indexDep);
+    //   } else {
+    //     console.log("WTF?");
+    //   }
+    // });
+
       // Your code here
     </script>
   </body>
