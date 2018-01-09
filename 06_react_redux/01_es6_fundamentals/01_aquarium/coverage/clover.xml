@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1515419474711" clover="3.2.0">
+  <project timestamp="1515419474711" name="All files">
+    <metrics statements="24" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="7" elements="34" coveredelements="29" complexity="0" loc="24" ncloc="24" packages="1" files="1" classes="1">
+      <file name="01_aquarium.js" path="/Users/Loreleine/Workspace/camp2_exercises/06_react_redux/01_es6_fundamentals/01_aquarium/01_aquarium.js">
+        <metrics statements="24" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="10" coveredmethods="7"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+        <line num="38" count="3" type="stmt"/>
+        <line num="45" count="5" type="stmt"/>
+        <line num="46" count="5" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="71" count="1" type="stmt"/>
+        <line num="73" count="1" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="77" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+      </file>
+    </metrics>
+  </project>
+</coverage>

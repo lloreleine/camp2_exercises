@@ -1,7 +1,8 @@
+//  Function fixed
 function go(options) {
   let {
     speed = 4,
-    enable: { hyperdrive = false, frobnifier = true}
+    enable: { hyperdrive = false, frobnifier = true } = {}
   } = options;
 
   console.log("speed=", speed, "hyperdrive:", hyperdrive, "frobnifier:", frobnifier);
@@ -9,7 +10,23 @@ function go(options) {
 
 go({ speed: 5 });
 
-function lastIndexOf(arr, elt, start) {
+// Fonction de base
+function go(options) {
+  let {
+    speed = 4,
+    enable: { hyperdrive = false, frobnifier = true }
+  } = options;
+}
+
+// Equivaut à :
+function go(options) {
+  let speed = options.speed;
+  let hyperdrive = options.enable.hyperdrive;
+  let frobnifier = options.enable.frobnifier;
+}
+
+
+function lastIndexOf(arr, elt, start = arr.length) {
   for (let i = start - 1; i >= 0; i--) {
     if (arr[i] === elt) {
       return i;
@@ -34,3 +51,8 @@ function copyReplace(array, from, to, elements) {
 }
 
 console.log(copyReplace([1, 2, 100, 200, 6], 2, 4, [3, 4, 5]));
+
+
+module.exports = {
+  go: go
+};
