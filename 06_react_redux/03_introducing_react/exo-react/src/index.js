@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Tasks from './Tasks';
 import registerServiceWorker from './registerServiceWorker';
 
 const products =
@@ -21,5 +22,6 @@ const products =
   { "decathlon_id": 8353265, "title": "Justaucorps manche longue Gym.", "price": 34.99 }
 ]
 
-ReactDOM.render(<App products={products}/>, document.getElementById('root'));
+ReactDOM.render(<Tasks/>, document.getElementById('root'));
+// ReactDOM.render(<App products={products}/>, document.getElementById('root'));
 registerServiceWorker();
