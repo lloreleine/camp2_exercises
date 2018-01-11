@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Tasks from './Tasks';
+import TicTacToe from './TicTacToe';
 import registerServiceWorker from './registerServiceWorker';
 
 const products =
@@ -22,6 +23,7 @@ const products =
   { "decathlon_id": 8353265, "title": "Justaucorps manche longue Gym.", "price": 34.99 }
 ]
 
-ReactDOM.render(<Tasks/>, document.getElementById('root'));
+ReactDOM.render(<TicTacToe />, document.getElementById('root'));
+// ReactDOM.render(<Tasks/>, document.getElementById('root'));
 // ReactDOM.render(<App products={products}/>, document.getElementById('root'));
 registerServiceWorker();
