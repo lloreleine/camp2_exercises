@@ -24,37 +24,41 @@ class TicTacToe extends Component {
         c: Array(3).fill('_')
       },
       player: 'X',
-      game: ''
+      game: '',
+      winner: ''
     };
   }
 
   handlePlay = (letter, index, cell, player) => {
-    let newGrid = this.state.grid;
+    if(this.state.game !== 'win' && this.state.grid[letter][index] === '_'){
+      let newGrid = this.state.grid;
 
-    newGrid[letter][index] = player;
-    if(player === 'X'){
-      this.setState({
-        grid: newGrid,
-        player: 'O'
-      });
-    } else {
-      this.setState({
-        grid: newGrid,
-        player: 'X'
-      });
+      newGrid[letter][index] = player;
+      if(player === 'X'){
+        this.setState({
+          grid: newGrid,
+          player: 'O'
+        });
+      } else {
+        this.setState({
+          grid: newGrid,
+          player: 'X'
+        });
+      }
+      let arrayOfArray=(Object.values(newGrid));
+      let isFull = arrayOfArray.reduce((newArray, array) => newArray.concat(array), []);
+
+      let testNull = isFull.every((value) => value !== '_');
+
+      if(testNull){
+        this.setState({
+          game: 'tie'
+        });
+      }
+      this.hasWinner();
     }
-    let arrayOfArray=(Object.values(newGrid));
-    let isFull = arrayOfArray.reduce((newArray, array) => newArray.concat(array), []);
-
-    let testNull = isFull.every((value) => value !== '_');
-
-    if(testNull){
-      this.setState({
-        game: 'tie'
-      });
-    }
-    this.hasWinner();
   }
+
 
   hasWinner() {
     const isWinningLine = (line) => {
@@ -69,30 +73,66 @@ class TicTacToe extends Component {
     let testWin = (WINNING_COORDINATES.some(isWinningLine));
     if(testWin){
       this.setState({
-        game: 'win'
+        game: 'win',
+        winner: this.state.player
       })
     }
     return testWin;
   }
 
+  displayPlayer(){
+    if(this.state.game !== 'win' && this.state.game !== 'tie'){
+      if(this.state.player === 'X'){
+        return <h4>Player {this.state.player}, your turn !</h4>
+      }
+      else if(this.state.player === 'O'){
+        return <h4>Player {this.state.player}, your turn !</h4>
+      }
+    }
+  }
+
+  restart = () => {
+    this.setState({
+      grid: {
+        a: Array(3).fill('_'),
+        b: Array(3).fill('_'),
+        c: Array(3).fill('_')
+      },
+      player: 'X',
+      game: '',
+      winner: ''
+    })
+  }
+
   gameIsFinished(){
     if(this.state.game === 'tie'){
-      return <h4>Looks like its a tie. Thanks for playing!</h4>
+      return (
+        <div>
+          <h4>Looks like its a tie. Thanks for playing!</h4>
+          <button onClick={this.restart}>Play Again</button>
+        </div>
+      )
     }
     else if(this.state.game === 'win'){
-      return <h4>Well done, you won!</h4>
+      return (
+        <div>
+          <h4>Well done {this.state.winner}, you won!</h4>
+          <button onClick={this.restart}>Play Again</button>
+        </div>
+      )
     }
   }
 
   render() {
     return (
       <div className="global">
-        <h3>Player {this.state.player}, your turn!</h3>
+        <h3>- TicTacToe Game -</h3>
         <div className="playBoard">
           <Board
             grid={this.state.grid}
             player={this.state.player}
             handlePlay={this.handlePlay} />
+          {this.displayPlayer()}
           {this.gameIsFinished()}
         </div>
       </div>
