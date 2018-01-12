@@ -3,13 +3,29 @@ import logo from './logo.svg';
 import CallApi from './CallApi';
 import './App.css';
 
+const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY2;
+
+function fetchWeather(city){
+  return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=${API_KEY}`)
+    .then(response => response.json())
+    .then(function(result){
+      let arrayWeather = [];
+      arrayWeather.push(result.main.temp);
+      arrayWeather.push(result.weather[0].main);
+      return arrayWeather;
+    })
+}
+
+
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
       city: '',
       weather: [],
-      temp : ''
+      temp : '',
+      loading: false,
+      error: false
     };
   }
 
@@ -19,20 +35,15 @@ class App extends Component {
 
   submitOpenW = (evt) => {
     evt.preventDefault();
-    return fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=metric&APPID=${this.props.apiKey}`)
-    .then(response => response.json())
-    .then(function(result){
-      let arrayWeather = [];
-      arrayWeather.push(result.main.temp);
-      arrayWeather.push(result.weather[0].main);
-      return arrayWeather;
-    })
-    .then(temp => {
-      this.setState({
-      weather: temp
+    this.setState({loading: true}, () =>
+      fetchWeather(this.state.city)
+      .then(temp => {
+        this.setState({
+          weather: temp,
+          loading: false
+        })
       })
-      console.log(this.state.weather);
-    })
+    )
   }
 
   displayWeather() {
@@ -45,6 +56,7 @@ class App extends Component {
     }
   }
   render() {
+    const loadPage = <h5>Loading...</h5>
     return (
       <div className="App">
         <header className="App-header">
@@ -55,6 +67,7 @@ class App extends Component {
         </p>
         <CallApi state={this.state} handleInput={this.handleInput} submitOpenW={this.submitOpenW}/>
         <div>
+        {this.state.loading && loadPage}
         {this.displayWeather()}
         </div>
       </div>
@@ -63,3 +76,4 @@ class App extends Component {
 }
 
 export default App;
+export { fetchWeather };
