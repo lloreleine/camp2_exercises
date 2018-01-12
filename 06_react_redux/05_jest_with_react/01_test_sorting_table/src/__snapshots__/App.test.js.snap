@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Everything looks the same 1`] = `
+<table>
+  <thead>
+    <tr>
+      <th
+        onClick={[Function]}
+      >
+        ID
+      </th>
+      <th
+        onClick={[Function]}
+      >
+        Title
+      </th>
+      <th
+        onClick={[Function]}
+      >
+        Price
+      </th>
+    </tr>
+  </thead>
+</table>
+`;
