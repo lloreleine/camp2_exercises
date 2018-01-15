@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf8"/>
+    <title>Welcome Page</title>
+  </head>
+  <body>
+
+    <h1>Welcome to Socket Land!</h1>
+    <p>There is <span id="nbUsers">0</span> user(s) connected.</p>
+
+  </body>
+
+  <script type="text/javascript">
+
+  const ws = new WebSocket("ws://localhost:3000");
+  const nbUsersElem = document.getElementById("nbUsers");
+
+  ws.onmessage = (event) => {
+    console.log("Message: " + event.data);
+    nbUsersElem.innerHTML = event.data;
+  };
+
+  // Alert the server that the client is gone
+  window.addEventListener("beforeunload", () => ws.send("CLOSE"));
+
+  </script>
+
+</html>
