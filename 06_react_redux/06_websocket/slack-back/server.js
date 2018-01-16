@@ -6,23 +6,41 @@ const path = require("path");
 const app = express();
 app.use(express.static(path.join(__dirname,"/views")));
 
+
 // We store the number of users as a global variable
 let numberOfUsers = 0;
 
 const wss = new WebSocket.Server({server});
+
 wss.on("connection", (ws, req) => {
-  // Here, we doing action when users open connection
   numberOfUsers += 1;
 
-  // When a user is connected, we send the information to all users
-
-  ws.on("message", (data) => {
-    wss.clients.forEach((client) => {
-      if(client.readyState === WebSocket.OPEN){
-        client.send(data);
-      }
-    });
+  wss.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      console.log("number of user:" +numberOfUsers);
+      client.send(numberOfUsers);
+    }
   });
+
+  // When a user quit, we send the information to all users
+  ws.on("message", (data) => {
+    if (data === "CLOSE") {
+      numberOfUsers -= 1;
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(numberOfUsers);
+        }
+      });
+    }
+    else {
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(data);
+        }
+      });
+    }
+  }
+  );
 });
 
 

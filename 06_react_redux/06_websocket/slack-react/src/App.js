@@ -13,6 +13,7 @@ class App extends Component {
     this.submitMsg = this.submitMsg.bind(this);
     this.handleMsg = this.handleMsg.bind(this);
     this.ws = new WebSocket("ws://localhost:4000");
+    this.nbUsersElem = document.getElementById("nbUsers");
 
     this.state = {
       current: '',
@@ -26,12 +27,23 @@ class App extends Component {
 
   componentDidMount(){
     this.ws.onmessage = (event) => {
-      let newMsgsList = this.state.msgsList;
-      newMsgsList.push(JSON.parse(event.data));
-      this.setState({
-        msgsList: newMsgsList,
-        nbUsers:event.data.nbUsers
-      })
+      console.log(event.data);
+      console.log("parseint:" + parseInt(event.data, 10));
+      if(isNaN(parseInt(event.data, 10))){
+        let newMsgsList = this.state.msgsList;
+        newMsgsList.push(JSON.parse(event.data));
+        this.setState({
+          msgsList: newMsgsList
+        })
+        console.log(this.state.msgsList);
+      }
+      else {
+        this.setState({
+          nbUsers: event.data
+        })
+        console.log("else: " + this.state.nbUsers);
+      }
+
     };
 
     // Alert the server that the client is gone
@@ -67,7 +79,6 @@ class App extends Component {
       nameUser: this.state.current,
       text: this.state.currentMsg
     };
-    // newListMsgs.push({nameUser: this.state.current, text: this.state.currentMsg});
     this.ws.send(JSON.stringify(newMsg));
   }
 
@@ -80,6 +91,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to Slacky React</h1>
         </header>
         <div className="margin-top">
+        <p>There is {this.state.nbUsers} user(s) connected.</p>
         {this.state.isLoggedIn === false &&
           <Form user={this.state.user} handleInput={this.handleInput} handleSubmit={this.handleSubmit} />
         }
