@@ -9,6 +9,7 @@ app.use(express.static(path.join(__dirname,"/views")));
 
 // We store the number of users as a global variable
 let numberOfUsers = 0;
+let msgs = {1: [], 2: []};
 let messages = [];
 
 const wss = new WebSocket.Server({server});
@@ -37,10 +38,14 @@ wss.on("connection", (ws, req) => {
     }
     else {
       messages.push(JSON.parse(data));
-      console.log(messages);
+      let msgChannel1 = messages.filter((msg) => msg.channel === "1");
+      let msgChannel2 = messages.filter((msg) => msg.channel === "2");
+
+      msgs = {1: msgChannel1, 2: msgChannel2};
+      console.log(JSON.stringify(msgs));
       wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
-          client.send(JSON.stringify(messages));
+          client.send(JSON.stringify(msgs));
         }
       });
     }

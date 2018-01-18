@@ -3,13 +3,13 @@ import './App.css';
 
 function Message(props){
   let textColor = "red";
-  if(props.name === props.msg.nameUser){
+  if(props.currentUser === props.nameUser){
     textColor='blue';
   }
   return(
     <tr>
-      <td className={textColor}>{props.msg.nameUser}</td>
-      <td>{props.msg.text}</td>
+      <td className={textColor}>{props.nameUser}</td>
+      <td>{props.message}</td>
     </tr>
   )
 }

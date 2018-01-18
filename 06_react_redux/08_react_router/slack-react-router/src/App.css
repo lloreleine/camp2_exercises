@@ -38,6 +38,15 @@
   color:blue;
 }
 
+.bloc-channels{
+  display: inline-block;
+  margin: 10px;
+}
+
+.table-msgs{
+  margin-top:20px;
+}
+
 thead{
   width: 300px;
   background-color: #D9E3E2;

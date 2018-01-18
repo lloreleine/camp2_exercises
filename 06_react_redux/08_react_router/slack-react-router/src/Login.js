@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
 import Form from './Form';
-import Chat from './Chat';
-import Message from './Message';
+import Channels from './Channels';
 
 
-class App extends Component {
+class Login extends Component {
   constructor(props){
     super(props);
     this.handleInput = this.handleInput.bind(this);
@@ -27,13 +21,14 @@ class App extends Component {
       nbUsers:0,
       usersList: [],
       currentMsg: '',
-      msgsList:[]
+      msgsList:{1: [], 2: []}
     };
   }
 
   componentDidMount(){
     this.ws.onmessage = (event) => {
-      console.log("parseint:" + parseInt(event.data, 10));
+      // console.log("parseint:" + parseInt(event.data, 10));
+      // console.log(JSON.parse(event.data));
       if(isNaN(parseInt(event.data, 10))){
         let messages = JSON.parse(event.data);
         this.setState({
@@ -76,13 +71,18 @@ class App extends Component {
     });
   }
 
-  submitMsg(event) {
+  submitMsg(event, id) {
     event.preventDefault();
     let newMsg = {
       nameUser: this.state.current,
-      text: this.state.currentMsg
+      text: this.state.currentMsg,
+      channel: id
     };
+    console.log(newMsg);
     this.ws.send(JSON.stringify(newMsg));
+    this.setState({
+      currentMsg: ''
+    })
   }
 
   render() {
@@ -95,34 +95,17 @@ class App extends Component {
         </header>
         <div className="margin-top">
         <p>There is {this.state.nbUsers} user(s) connected.</p>
+
         {this.state.isLoggedIn === false &&
           <Form user={this.state.user} handleInput={this.handleInput} handleSubmit={this.handleSubmit} />
         }
         {this.state.isLoggedIn &&
-          <Chat userLoggedIn={this.state.usersList[0]} submitMsg={this.submitMsg} handleMsg={this.handleMsg}/>
+          <Channels currentUser={this.state.current} msgsList={this.state.msgsList} submitMsg={this.submitMsg} handleMsg={this.handleMsg} currentMsg={this.state.currentMsg}/>
         }
         </div>
-
-        {this.state.isLoggedIn === true &&
-        <div>
-          <h4>Slacky Chat</h4>
-          <table>
-            <thead>
-              <tr>
-                <th>From</th>
-                <th>Message</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.msgsList.map((msg,i) => <Message key={i} msg={msg} name={this.state.current} />)}
-            </tbody>
-          </table>
-        </div>
-        }
-
       </div>
     );
   }
 }
 
-export default App;
+export default Login;
