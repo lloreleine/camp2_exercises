@@ -42,7 +42,7 @@ wss.on("connection", (ws, req) => {
       let msgChannel2 = messages.filter((msg) => msg.channel === "2");
 
       msgs = {1: msgChannel1, 2: msgChannel2};
-      console.log(JSON.stringify(msgs));
+      // console.log(JSON.stringify(msgs));
       wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify(msgs));

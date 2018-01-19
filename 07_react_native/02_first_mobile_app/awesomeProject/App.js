@@ -1,30 +1,58 @@
-import React from 'react';
+import React, { Component} from 'react';
 import { StyleSheet, Text, View, Image, TextInput, Button } from 'react-native';
+import Slack from './Slack';
 
-function onPressLearnMore(){
-  return
-}
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.launchDashboard = this.launchDashboard.bind(this);
+    this.state = {
+      isLoggedIn: false,
+      userName: ''
+    };
+  }
 
-export default class App extends React.Component {
+  launchDashboard(){
+    this.setState({
+      isLoggedIn: true
+    })
+  }
+
+  handleMsg(){
+    return
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
-          style={{width: 50, height: 50}} />
-          <Text style={styles.elements}>My Awesome App Project</Text>
+          {this.state.isLoggedIn === false &&
+          <View style={styles.form}>
 
-          <Text style={styles.elements}>Please enter your name:</Text>
-          <TextInput
-            style={{height: 20, width: 50, borderColor: 'gray', borderWidth: 1}}
-            placeHolder="enter your name"
-          />
-          <Button
-            style={styles.button}
-            onPress={onPressLearnMore}
-            title="Login"
-            accessibilityLabel="Learn more about this purple button"
-          />
+            <Image
+              source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+              style={{width: 50, height: 50}} />
+            <Text style={styles.elements}>My Awesome App Project</Text>
+
+            <Text style={styles.elements}>Please enter your name:</Text>
+            <TextInput
+              style={{height: 20, width: 100, borderColor: 'gray', borderWidth: 1}}
+              placeHolder="enter your name"
+              onChangeText={(text) => this.setState({userName: text})}
+              onSubmitEditing={this.launchDashboard}
+            />
+            <Button
+              style={styles.button}
+              onPress={this.launchDashboard}
+              title="Login"
+              accessibilityLabel="Learn more about this purple button"
+            />
+
+          </View>
+          }
+
+          {this.state.isLoggedIn === true &&
+            <Slack userName={this.state.userName}/>
+          }
       </View>
     );
   }
@@ -34,6 +62,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'papayawhip',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  form: {
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -50,3 +82,5 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   }
 });
+
+export default App;

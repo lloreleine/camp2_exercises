@@ -7,18 +7,23 @@ import {
 } from 'react-router-dom';
 import Chat from './Chat';
 
+let linkChannel = {
+  textDecoration: 'none',
+  color: 'black'
+};
+
 function Channels(props){
   return (
     <Router>
-    <div>
-      <h3>Welcome {props.userName}</h3>
+    <div className="channel-container">
+      <h3>Welcome {props.currentUser}</h3>
       <h4>Please choose your channel:</h4>
       <div className="bloc-channels">
-        <h3><Link to="/channels/1">Channel 1</Link></h3>
+        <h3><Link to="/channels/1" style={linkChannel}>Channel 1</Link></h3>
       </div>
 
       <div className="bloc-channels">
-        <h3><Link to="/channels/2">Channel 2</Link></h3>
+        <h3><Link to="/channels/2" style={linkChannel}>Channel 2</Link></h3>
       </div>
 
       <Route
