@@ -37,15 +37,17 @@ class App extends Component {
             <TextInput
               style={{height: 20, width: 100, borderColor: 'gray', borderWidth: 1}}
               placeHolder="enter your name"
+              returnKeyType="send"
               onChangeText={(text) => this.setState({userName: text})}
               onSubmitEditing={this.launchDashboard}
             />
-            <Button
-              style={styles.button}
-              onPress={this.launchDashboard}
-              title="Login"
-              accessibilityLabel="Learn more about this purple button"
-            />
+            <View style={{marginTop: 20}}>
+              <Button
+                onPress={this.launchDashboard}
+                title="Login"
+                color="#68a0cf"
+              />
+            </View>
 
           </View>
           }

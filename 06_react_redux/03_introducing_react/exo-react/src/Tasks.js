@@ -14,9 +14,15 @@ class Tasks extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault();
     let newList = this.state.list;
-    newList.push({value: this.state.current, isChecked: false});
-
-    this.setState({ list: newList });
+    console.log(newList);
+    if(this.state.current !== ''){
+      newList.push({value: this.state.current, isChecked: false});
+    }
+    console.log(newList);
+    this.setState({
+      list: newList,
+      current: ''
+     });
   }
 
   handleInput = (evt) => {
@@ -24,7 +30,6 @@ class Tasks extends Component {
   }
 
   handleCheck = (task) => {
-    console.log(task);
     let newList = this.state.list.map(tsk => {
       if (tsk.value === task.value) {
         tsk.isChecked = !task.isChecked
@@ -37,11 +42,10 @@ class Tasks extends Component {
   }
 
   handleDelete = (task, index) => {
-    let newList = this.state.list;
-    newList.splice(index, 1);
-    console.log(newList);
+    let newListClean = this.state.list;
+    newListClean.splice(index, 1);
     this.setState({
-      list: newList
+      list: newListClean
     });
   }
 
@@ -52,17 +56,17 @@ class Tasks extends Component {
           <label>
             Add task:&nbsp;
             <input type="text" value={this.state.current} onChange={this.handleInput} />
-            </label>
-            {this.state.list.map((task, index) =>
-              <List
-                key={index}
-                index={index}
-                task={task}
-                handleCheck={this.handleCheck}
-                handleDelete={this.handleDelete}
-              />
-            )}
+          </label>
         </form>
+          {this.state.list.map((task, index) =>
+            <List
+              key={index}
+              index={index}
+              task={task}
+              handleCheck={this.handleCheck}
+              handleDelete={this.handleDelete}
+            />
+          )}
       </div>
     );
   }

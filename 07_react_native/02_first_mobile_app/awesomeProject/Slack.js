@@ -16,7 +16,8 @@ class Slack extends Component {
   displayMsg(){
     this.state.messages.push({userName: this.props.userName, text: this.state.currentMsg});
     this.setState({
-      conversation: true
+      conversation: true,
+      currentMsg: ''
     })
   }
 
@@ -44,8 +45,11 @@ class Slack extends Component {
           <TextInput
             style={{height: 20, width: 100, borderColor: 'gray', borderWidth: 1}}
             placeHolder="Write your message"
+            returnKeyType="send"
             onChangeText={(text) => this.setState({currentMsg: text})}
             onSubmitEditing={this.displayMsg}
+            value={this.state.currentMsg}
+            multiline={true}
           />
           <Button onPress={this.submitMsg} title="Send"/>
         </View>
