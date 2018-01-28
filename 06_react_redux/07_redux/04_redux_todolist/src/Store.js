@@ -1,11 +1,11 @@
-import React from 'react';
-import { createStore } from 'redux';
-import './App.css';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import logger from 'redux-logger';
 
 const initialState = {
   current: '',
   list:[],
-  counter: 0
+  title: 'My ToDo List',
+  visFilter: 'all'
 };
 
 function toDoList(state = initialState, action){
@@ -19,16 +19,19 @@ function toDoList(state = initialState, action){
       };
 
     case "SUBMIT_TASK":
-      let newList = state.list;
+      // !! let NewList = state.list ne fait pas une copie de l'état.
+      // Elle affecte directement l'état !! So:
+      // let newList = state.list.slice();
       if(state.current !== ''){
-        newList.push({value: state.current, isChecked: false});
-      }
-      console.log(state.list);
-      return {
-        ...state,
-        current: '',
-        list: newList,
-        counter: state.counter + 1
+        return {
+          ...state,
+          current: '',
+          list: [ ...state.list, {value: state.current, isChecked: false} ]
+        };
+      } else{
+        return {
+          ...state
+        }
       };
 
     case "TASK_CHECKED":
@@ -44,13 +47,13 @@ function toDoList(state = initialState, action){
       };
 
     case "DELETE_TASK":
-      let newListClean = state.list;
-      newListClean.splice(action.index, 1);
-      console.log(newListClean);
+
+    // slice(index de début d'extraction, index de fin d'extraction exclu)
+    // slice (1, 4) -> extrait les éléments aux index 1, 2 et 3.
+
       return {
         ...state,
-        list: newListClean,
-        counter: state.counter - 1
+        list: [ ...state.list.slice(0, action.index), ...state.list.slice(action.index + 1)]
       };
 
     default :
@@ -60,7 +63,7 @@ function toDoList(state = initialState, action){
 
 function changeTitle(state = initialState, action){
   switch(action.type){
-    case "CHANGE":
+    case "SWITCH_TITLE":
       return {
         title: 'BAZINGA!'
       };
@@ -69,45 +72,41 @@ function changeTitle(state = initialState, action){
   }
 }
 
+function visibilityFilter(state = initialState, action){
+  console.log(action.visFilter);
+  switch(action.type){
+    case "FILTER_TASKS":
+      if(action.visFilter === 'Done Tasks'){
+        return {
+          ...state,
+          filter: 'To Do Tasks'
+        };
+      }
 
-let store = createStore(toDoList);
+    case "FILTERS":
+    if(action.visFilter === 'Done Tasks'){
+      return {
+        ...state,
+        filter: 'Done Tasks'
+      };
+    } else if(action.filter === 'To Do Tasks'){
+      return {
+        ...state,
+        filter: 'To Do Tasks'
+      };
+    } else {
+      return state;
+    }
+    default :
+      return state;
+  }
+}
+
+const allReducers = combineReducers({
+    toDoList: toDoList,
+    changeTitle: changeTitle,
+    visibilityFilter: visibilityFilter
+});
+
+let store = createStore(allReducers, applyMiddleware(logger));
 export default store;
-
-
-
-
-
-
-
-
-  // handleSubmit = (evt) => {
-  //   evt.preventDefault();
-  //   let newList = this.props.list;
-  //   if(this.props.current !== ''){
-  //     newList.push({value: this.props.current, isChecked: false});
-  //   }
-  //   this.setState({
-  //     list: newList,
-  //     current: ''
-  //    });
-  // }
-  //
-  // handleCheck = (task) => {
-  //   let newList = this.props.list.map(tsk => {
-  //     if (tsk.value === task.value) {
-  //       tsk.isChecked = !task.isChecked
-  //     }
-  //
-  //     return tsk;
-  //   })
-  //
-  //   this.setState({ list: newList })
-  // }
-  //
-  // handleDelete = (task, index) => {
-  //   let newListClean = this.props.list;
-  //   newListClean.splice(index, 1);
-  //   this.setState({
-  //     list: newListClean
-  //   });
-  // }

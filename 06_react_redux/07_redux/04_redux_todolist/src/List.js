@@ -4,39 +4,26 @@ import { connect } from 'react-redux';
 
 class List extends Component {
 
-  handleCheck = (task, index) => {
-    this.props.dispatch({
-    type: "TASK_CHECKED",
-    task: task,
-    index: index
-    })
-  }
-
-  handleDelete = (task, index) => {
-    this.props.dispatch({
-    type: "DELETE_TASK",
-    task: task,
-    index: index
-    })
-  }
-
   render(){
 
     let checkedStyle = "";
     let deleteButton = null;
     if (this.props.task.isChecked) {
-      deleteButton = (<button onClick={() => this.handleDelete(this.props.task, this.props.index)}>Delete</button>)
+      deleteButton = (<button onClick={() => this.props.handleDelete(this.props.task, this.props.index)}>Delete</button>)
       checkedStyle = "strikethrough";
     }
+
+    console.log(this.props.task.isChecked);
+
+    // Permet d'alléger la syntaxe des variables utilisées dans le render :
+    // const { isChecked, value } = this.props.task;
 
     return (
       <div className="margin">
         <input
           type="checkbox"
-          name={this.props.list.indexOf(this.props.task)}
-          value={this.props.task.value}
           checked={this.props.task.isChecked}
-          onChange={() => {this.handleCheck(this.props.task, this.props.index)}}
+          onChange={() => {this.props.handleCheck(this.props.task)}}
         />
         &nbsp;&nbsp;
         <label className={checkedStyle}>{this.props.task.value}</label>
@@ -49,18 +36,23 @@ class List extends Component {
 
 function mapStateToProps(state) {
   return {
-    current: state.current,
-    list: state.list
+    list: state.toDoList.list
   }
 }
 
-let ConnectedList = connect(mapStateToProps)(List);
+function mapDispatchToProps(dispatch){
+  return {
+    handleDelete: (task, index) => dispatch({
+      type: "DELETE_TASK",
+      task: task,
+      index: index
+    }),
+    handleCheck: (task) => dispatch({
+      type: "TASK_CHECKED",
+      task: task
+    })
+  }
+}
+
+let ConnectedList = connect(mapStateToProps, mapDispatchToProps)(List);
 export default ConnectedList;
-
-
-// let checkedStyle = "";
-// let deleteButton = null;
-// if (props.task.isChecked) {
-//   deleteButton = (<button onClick={() => props.handleDelete(props.task, props.index)}>Delete</button>)
-//   checkedStyle = "strikethrough";
-// }

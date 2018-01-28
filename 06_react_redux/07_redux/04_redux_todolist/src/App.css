@@ -35,6 +35,14 @@
   margin-left: 20px;
 }
 
+.buttonsFilters {
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-right: 10px;
+  border-color: skyblue;
+  background-color: #fff;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
